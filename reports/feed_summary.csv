@@ -1,0 +1,3 @@
+feed,source_rows,valid_rows,validation_pass_pct,exception_events
+CARDS,500,500,100.0,6
+CORE,502,495,98.61,7

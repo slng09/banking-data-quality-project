@@ -1,0 +1,18 @@
+{
+  "source_rows": 1002,
+  "valid_rows": 995,
+  "validation_pass_pct": 99.3,
+  "matched_ids": 990,
+  "missing_target_ids": 2,
+  "net_amount_variance_sgd": 25.0,
+  "exception_events": 12,
+  "exception_counts": {
+    "MISSING_ACCOUNT": 1,
+    "INVALID_CURRENCY": 1,
+    "INVALID_AMOUNT": 1,
+    "DUPLICATE_ID": 4,
+    "MISSING_TARGET": 2,
+    "AMOUNT_MISMATCH": 2,
+    "CURRENCY_MISMATCH": 1
+  }
+}
