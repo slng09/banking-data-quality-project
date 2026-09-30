@@ -4,9 +4,11 @@ An interactive executive dashboard for source validation and transaction reconci
 
 **All data is synthetic.** This is a portfolio and reporting-readiness prototype, not a regulatory submission.
 
-## Repository contents
+[**View live dashboard**](https://slng09.github.io/banking-data-quality-project/)
 
-The dashboard is available directly as `index.html`. Download and extract `banking-data-quality-github.zip` for the complete project, including the `src/`, `data/`, and `reports/` folders described below. Run the reproduction command from the extracted project directory.
+Browse the Python pipeline and dashboard builder in [src](src/), analytical queries in [sql](sql/), automated checks in [tests](tests/), synthetic records in [data](data/), and output tables in [reports](reports/).
+
+![Dashboard preview](dashboard-preview.png)
 
 ## Preview
 Download the repository and open `index.html` in a modern browser. The dashboard is self-contained and works offline, with no installation required.
@@ -48,14 +50,21 @@ Source rows fail validation if their transaction ID is duplicated anywhere in th
 Validation pass rate divides valid rows by source rows. Exact-match rate divides matches by valid rows. Exception events count failed controls, not distinct IDs. The 13 affected source rows represent 11 distinct IDs. Filters change selected denominators but do not change the original control classifications.
 
 ## Source quality correction
-The supplied archive contained two different dataset versions. This project uses only `source_transactions.csv` and `target_transactions.csv`, the pair referenced by its original pipeline. The supplied summary JSON reported 990 matches, two missing targets and 12 events; recalculation yields 989, three and 13, matching the daily, feed and exception-detail reports. The metrics JSON in this repository contains the corrected figures.
+The supplied archive contained two different dataset versions. This project uses only `source_transactions.csv` and `target_transactions.csv`, the pair referenced by its original pipeline. The supplied summary JSON reported 990 matches, two missing targets and 12 events; recalculation yields 989, three and 13, matching the daily, feed and exception-detail reports. The original metrics.json and legacy datasets are retained for provenance. The current dashboard and the transaction-level daily/feed/detail reports use the corrected figures above. The original test_project.py checks the legacy metrics/database; test_pipeline.py checks the current pipeline. Do not combine the two dataset versions.
 
 ## Files
 - `index.html`: complete dashboard and static website entry point.
 - `src/`: reproducible Python builder and HTML template.
 - `data/`: synthetic source and target records.
-- `reports/`: validated daily/feed summaries, exception detail and corrected metrics.
+- `reports/`: daily/feed summaries, exception detail and original legacy metrics.
 
 ## Publishing
-The root `index.html` can be hosted by a static website provider. For GitHub Pages, publish the repository root from the selected branch. No build step is required. No live website has been published as part of this package.
+The root `index.html` can be hosted by a static website provider. For GitHub Pages, publish the repository root from the selected branch. No build step is required. The live dashboard is published with GitHub Pages from the root index.html.
+
+
+## Original project
+
+The unzipped project files are included in their original folders. `python src/run.py` regenerates the current synthetic pipeline and the original static dashboard in `dashboard/`. `python src/build_dashboard.py` rebuilds the interactive root dashboard. The original case study and Power BI guide are included as supporting documents; their legacy metrics references should be interpreted using the correction above. No .pbix file is included.
+
+
 
